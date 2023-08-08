@@ -115,15 +115,15 @@ ZMK_BEHAVIOR(lower, tap_dance,
     tapping-term-ms = <200>;
 )
 
-ZMK_BEHAVIOR(magic, hold_tap,
-    flavor = "tap-preferred";
-    bindings = <&mo>, <&rgb_ug_status_macro>;
-    tapping-term-ms = <200>;
-)
+// ZMK_BEHAVIOR(magic, hold_tap,
+//     flavor = "tap-preferred";
+//     bindings = <&mo>, <&rgb_ug_status_macro>;
+//     tapping-term-ms = <200>;
+// )
 
-ZMK_BEHAVIOR(rgb_ug_status_macro, macro,
-    bindings = <&rgb_ug RGB_STATUS>;
-)
+// ZMK_BEHAVIOR(rgb_ug_status_macro, macro,
+//     bindings = <&rgb_ug RGB_STATUS>;
+// )
 
 ZMK_BEHAVIOR(bt_0, macro,
     bindings = <&out OUT_BLE>, <&bt BT_SEL 0>;
@@ -144,7 +144,7 @@ ZMK_BEHAVIOR(bt_3, macro,
 #define XXX  &none
 #define ___  &trans
 
-#define MAGIC     &magic 2 0
+// #define MAGIC     &magic 2 0
 #define IN_SRC    &kp LG(LS(LC(SPACE)))
 #define MIC_MUTE  &kp LG(LA(LCTRL))
 #define ONEPASS   &kp LG(LS(SPACE))
@@ -164,7 +164,7 @@ GLV80_LAYER(Base,
 // ├───────────────┼────────────────────┼───────────────────┼───────────────────┼─────────────────────┼────────┤   ├────────┼─────────────────────┼───────────────────┼─────────────────────┼───────────────────────┼───────────┤
      &kp GRAVE       &kp Z                &hml_homes RALT X   &hml_homes RGUI C   &kp V                 &kp B    ,   &kp N    &kp M                 &cp COMMA           &hmr_homes RALT DOT   &kp FSLH                &kp EQUAL
 // ├───────────────┼────────────────────┼───────────────────┼───────────────────┼─────────────────────┼────────╯   ╰────────┼─────────────────────┼───────────────────┼─────────────────────┼───────────────────────┼───────────┤
-     MAGIC           &kp HOME             &kp END             &kp LEFT            &kp RIGHT                      ,            &kp LPAR              &kp LBKT            &kp RBKT              &kp RPAR                &kp PG_DN
+     &mo 2           &kp HOME             &kp END             &kp LEFT            &kp RIGHT                      ,            &kp LPAR              &kp LBKT            &kp RBKT              &kp RPAR                &kp PG_DN
 // ╰───────────────┴────────────────────┴───────────────────┴───────────────────┴─────────────────────╯                     ╰─────────────────────┴───────────────────┴─────────────────────┴───────────────────────┴───────────╯
                                                                                                                  ,
 //                                                                  ╭─────────────┬──────────────┬──────────╮         ╭─────────┬────────────────────┬───────────╮
@@ -198,7 +198,7 @@ GLV80_LAYER(Lower,
 
 GLV80_LAYER(Magic,
 // ╭─────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮                             ╭───────┬───────┬───────┬───────┬────────────────╮
-     &bt BT_CLR    XXX               XXX               XXX               XXX                                             XXX     XXX     XXX     XXX     &bt BT_CLR_ALL
+     &bt BT_CLR    XXX               XXX               XXX               XXX                                             XXX     XXX     XXX     XXX     XXX
 // ├─────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────╮   ╭───────┼───────┼───────┼───────┼───────┼────────────────┤
      XXX           XXX               XXX               XXX               XXX               XXX                   XXX     XXX     XXX     XXX     XXX     XXX
 // ├─────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├───────┼───────┼───────┼───────┼───────┼────────────────┤
