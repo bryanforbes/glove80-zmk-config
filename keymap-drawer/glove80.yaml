@@ -73,7 +73,7 @@ layers:
   - $$mdi:keyboard-tab$$
   - {t: Esc, h: Lower}
   - $$mdi:microphone$$
-  - Mouse
+  - {t: Mouse, h: toggle}
   - $$mdi:backspace-outline$$
   - {t: '$$mdi:keyboard-space$$', h: Symbol}
   - (
@@ -109,7 +109,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - Typing
+  - {t: Typing, h: toggle}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -316,7 +316,7 @@ layers:
   - ''
   - ''
   - ''
-  - Base
+  - {t: Base, h: toggle}
   - {t: '$$mdi:numeric-2$$', h: '$$mdi:mouse$$'}
   - {t: '$$mdi:numeric-1$$', h: '$$mdi:mouse$$'}
   - ''
