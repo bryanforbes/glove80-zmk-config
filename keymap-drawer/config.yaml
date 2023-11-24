@@ -54,15 +54,15 @@ parse_config:
     '&rgb_ug RGB_BRD': {h: $$mdi:lightbulb-outline$$, t: 'Bri-'}
     '&rgb_ug RGB_TOG': {h: $$mdi:lightbulb-outline$$, t: 'Toggle'}
     '&rgb_ug RGB_EFF': {h: $$mdi:lightbulb-outline$$, t: 'Effects'}
-    U_BTN1: {h: $$mdi:mouse$$, t: $$mdi:numeric-1$$}
-    U_BTN2: {h: $$mdi:mouse$$, t: $$mdi:numeric-2$$}
-    U_BTN3: {h: $$mdi:mouse$$, t: $$mdi:numeric-3$$}
-    U_MS_U: {h: $$mdi:mouse$$, t: $$mdi:arrow-up$$}
-    U_MS_D: {h: $$mdi:mouse$$, t: $$mdi:arrow-down$$}
-    U_MS_L: {h: $$mdi:mouse$$, t: $$mdi:arrow-left$$}
-    U_MS_R: {h: $$mdi:mouse$$, t: $$mdi:arrow-right$$}
-    U_WH_U: {h: $$mdi:tire$$, t: $$mdi:arrow-up$$}
-    U_WH_D: {h: $$mdi:tire$$, t: $$mdi:arrow-down$$}
+    '&mkp MB1': {h: $$mdi:mouse$$, t: $$mdi:numeric-1$$}
+    '&mkp MB2': {h: $$mdi:mouse$$, t: $$mdi:numeric-2$$}
+    '&mkp MB3': {h: $$mdi:mouse$$, t: $$mdi:numeric-3$$}
+    '&mmv MOVE_UP': {h: $$mdi:mouse$$, t: $$mdi:arrow-up$$}
+    '&mmv MOVE_DOWN': {h: $$mdi:mouse$$, t: $$mdi:arrow-down$$}
+    '&mmv MOVE_LEFT': {h: $$mdi:mouse$$, t: $$mdi:arrow-left$$}
+    '&mmv MOVE_RIGHT': {h: $$mdi:mouse$$, t: $$mdi:arrow-right$$}
+    '&msc SCRL_UP': {h: $$mdi:tire$$, t: $$mdi:arrow-up$$}
+    '&msc SCRL_DOWN': {h: $$mdi:tire$$, t: $$mdi:arrow-down$$}
     '&macswap': {h: $$mdi:apple$$, t: $$mdi:swap-horizontal-bold$$}
     '&winswap': {h: $$mdi:microsoft-windows$$, t: $$mdi:swap-horizontal-bold$$}
 
