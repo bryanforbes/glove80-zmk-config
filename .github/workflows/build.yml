@@ -39,6 +39,42 @@ jobs:
           TIMESTAMP=$(date -u +"%Y-%m-%d-%H%M")
           cp combined/glove80.uf2 "glove80-${TIMESTAMP}.uf2"
           echo "timestamp=${TIMESTAMP}" >> "$GITHUB_OUTPUT"
+      - name: Glove80 Left Kconfig file
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f "combined/glove80_lh.config" ]; then
+            grep -v -e "^#" -e "^$" "combined/glove80_lh.config" | sort
+          else
+            echo "No Kconfig output"
+          fi
+      - name: Glove80 Right Kconfig file
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f "combined/glove80_rh.config" ]; then
+            grep -v -e "^#" -e "^$" "combined/glove80_rh.config" | sort
+          else
+            echo "No Kconfig output"
+          fi
+      - name: Glove80 Left Devicetree file
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f "combined/glove80_lh.zephyr.dts" ]; then
+            cat "combined/glove80_lh.zephyr.dts"
+          elif [ -f "combined/glove80_lh.zephyr.dts.pre" ]; then
+            cat "combined/glove80_lh.zephyr.dts.pre"
+          else
+            echo "No Devicetree output"
+          fi
+      - name: Glove80 Right Devicetree file
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f "combined/glove80_rh.zephyr.dts" ]; then
+            cat "combined/glove80_rh.zephyr.dts"
+          elif [ -f "combined/glove80_rh.zephyr.dts.pre" ]; then
+            cat "combined/glove80_rh.zephyr.dts.pre"
+          else
+            echo "No Devicetree output"
+          fi
       - name: Upload result
         uses: actions/upload-artifact@v3
         with:
