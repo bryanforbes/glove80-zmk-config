@@ -42,36 +42,36 @@ jobs:
       - name: Glove80 Left Kconfig file
         if: ${{ !cancelled() }}
         run: |
-          if [ -f "combined/glove80_lh.config" ]; then
-            grep -v -e "^#" -e "^$" "combined/glove80_lh.config" | sort
+          if [ -f "combined/zmk_glove80_lh.config" ]; then
+            grep -v -e "^#" -e "^$" "combined/zmk_glove80_lh.config" | sort
           else
             echo "No Kconfig output"
           fi
       - name: Glove80 Right Kconfig file
         if: ${{ !cancelled() }}
         run: |
-          if [ -f "combined/glove80_rh.config" ]; then
-            grep -v -e "^#" -e "^$" "combined/glove80_rh.config" | sort
+          if [ -f "combined/zmk_glove80_rh.config" ]; then
+            grep -v -e "^#" -e "^$" "combined/zmk_glove80_rh.config" | sort
           else
             echo "No Kconfig output"
           fi
       - name: Glove80 Left Devicetree file
         if: ${{ !cancelled() }}
         run: |
-          if [ -f "combined/glove80_lh.zephyr.dts" ]; then
-            cat "combined/glove80_lh.zephyr.dts"
-          elif [ -f "combined/glove80_lh.zephyr.dts.pre" ]; then
-            cat "combined/glove80_lh.zephyr.dts.pre"
+          if [ -f "combined/zmk_glove80_lh.zephyr.dts" ]; then
+            cat "combined/zmk_glove80_lh.zephyr.dts"
+          elif [ -f "combined/zmk_glove80_lh.zephyr.dts.pre" ]; then
+            cat "combined/zmk_glove80_lh.zephyr.dts.pre"
           else
             echo "No Devicetree output"
           fi
       - name: Glove80 Right Devicetree file
         if: ${{ !cancelled() }}
         run: |
-          if [ -f "combined/glove80_rh.zephyr.dts" ]; then
-            cat "combined/glove80_rh.zephyr.dts"
-          elif [ -f "combined/glove80_rh.zephyr.dts.pre" ]; then
-            cat "combined/glove80_rh.zephyr.dts.pre"
+          if [ -f "combined/zmk_glove80_rh.zephyr.dts" ]; then
+            cat "combined/zmk_glove80_rh.zephyr.dts"
+          elif [ -f "combined/zmk_glove80_rh.zephyr.dts.pre" ]; then
+            cat "combined/zmk_glove80_rh.zephyr.dts.pre"
           else
             echo "No Devicetree output"
           fi
