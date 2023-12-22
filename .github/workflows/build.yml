@@ -31,14 +31,16 @@ jobs:
         with:
           name: moergo-glove80-zmk-dev
           skipPush: true
-      - name: Build Glove80 combined firmware
-        run: nix-build config -o combined
-      - name: Copy result out of nix store
-        id: copy-result
+      - name: Generate firmware version
+        id: firmware-version
         run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%d-%H%M")
-          cp combined/glove80.uf2 "glove80-${TIMESTAMP}.uf2"
-          echo "timestamp=${TIMESTAMP}" >> "$GITHUB_OUTPUT"
+          FW_VERSION=$(date -u +"%y.%m.%d-%H%M")
+          echo "version=${FW_VERSION}" >> "$GITHUB_OUTPUT"
+      - name: Build Glove80 combined firmware
+        run: nix-build config -o combined --argstr fwversion ${{ steps.firmware-version.outputs.version }}
+      - name: Copy result out of nix store
+        run: |
+          cp combined/glove80.uf2 "glove80_${{ steps.firmware-version.outputs.version }}.uf2"
       - name: Glove80 Left Kconfig file
         if: ${{ !cancelled() }}
         run: |
@@ -78,5 +80,5 @@ jobs:
       - name: Upload result
         uses: actions/upload-artifact@v3
         with:
-          name: glove80-${{ steps.copy-result.outputs.timestamp }}.uf2
-          path: glove80-${{ steps.copy-result.outputs.timestamp }}.uf2
+          name: glove80_${{ steps.firmware-version.outputs.version }}.uf2
+          path: glove80_${{ steps.firmware-version.outputs.version }}.uf2
