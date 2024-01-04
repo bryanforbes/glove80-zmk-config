@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: bryanforbes/zmk
-          ref: bryanforbes
+          ref: pr26/bryanforbes
           path: src
           fetch-depth: 0
 
@@ -44,16 +44,16 @@ jobs:
       - name: Glove80 Left Kconfig file
         if: ${{ !cancelled() }}
         run: |
-          if [ -f "combined/zmk_glove80_lh.config" ]; then
-            grep -v -e "^#" -e "^$" "combined/zmk_glove80_lh.config" | sort
+          if [ -f "combined/zmk_glove80_lh.kconfig" ]; then
+            grep -v -e "^#" -e "^$" "combined/zmk_glove80_lh.kconfig" | sort
           else
             echo "No Kconfig output"
           fi
       - name: Glove80 Right Kconfig file
         if: ${{ !cancelled() }}
         run: |
-          if [ -f "combined/zmk_glove80_rh.config" ]; then
-            grep -v -e "^#" -e "^$" "combined/zmk_glove80_rh.config" | sort
+          if [ -f "combined/zmk_glove80_rh.kconfig" ]; then
+            grep -v -e "^#" -e "^$" "combined/zmk_glove80_rh.kconfig" | sort
           else
             echo "No Kconfig output"
           fi
@@ -62,8 +62,6 @@ jobs:
         run: |
           if [ -f "combined/zmk_glove80_lh.zephyr.dts" ]; then
             cat "combined/zmk_glove80_lh.zephyr.dts"
-          elif [ -f "combined/zmk_glove80_lh.zephyr.dts.pre" ]; then
-            cat "combined/zmk_glove80_lh.zephyr.dts.pre"
           else
             echo "No Devicetree output"
           fi
@@ -72,8 +70,6 @@ jobs:
         run: |
           if [ -f "combined/zmk_glove80_rh.zephyr.dts" ]; then
             cat "combined/zmk_glove80_rh.zephyr.dts"
-          elif [ -f "combined/zmk_glove80_rh.zephyr.dts.pre" ]; then
-            cat "combined/zmk_glove80_rh.zephyr.dts.pre"
           else
             echo "No Devicetree output"
           fi
