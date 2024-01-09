@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: bryanforbes/zmk
-          ref: pr26/bryanforbes
+          ref: zephyr-3.5/bryanforbes
           path: src
           fetch-depth: 0
 
