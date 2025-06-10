@@ -1,0 +1,27 @@
+manifest:
+  defaults:
+    remote: bryanforbes
+
+  remotes:
+    - name: bryanforbes
+      url-base: https://github.com/bryanforbes
+    - name: moergo-sc
+      url-base: https://github.com/moergo-sc
+    - name: urob
+      url-base: https://github.com/urob
+
+  projects:
+    - name: zmk
+      revision: zephyr-3.5/bryanforbes
+      import: app/west.yml
+
+    # ZMK modules
+    - name: zmk-helpers
+      remote: urob
+      path: modules/zmk/helpers
+    - name: zmk-tri-state
+      remote: urob
+      path: modules/zmk/tri-state
+
+  self:
+    path: config

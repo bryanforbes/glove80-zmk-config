@@ -22,10 +22,20 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#include "./zmk-nodefree-config/helper.h"
-#include "./zmk-nodefree-config/keypos_def/keypos_glv80.h"
+#include "zmk-helpers/helper.h"
+#include "zmk-helpers/key-labels/glove80.h"
 
-#include "./mouse.dtsi"
+#define XXX  &none
+#define ___  &trans
+
+#define BASE    0
+#define LOWER   1
+#define SYMBOL  2
+#define MOUSE   3
+#define MAGIC   4
+#define TYPING  5
+#define WARP    6
+#define PRECIS  7
 
 #define LEFT_HAND_KEYS   LC5 LC4 LC3 LC2 LC1 \
                          LN5 LN4 LN3 LN2 LN1 LN0 \
@@ -51,15 +61,16 @@
 
 #define NUMERIC  N0 N1 N2 N3 N4 N5 N6 N7 N8 N9
 
+#include "./mouse.dtsi"
 
 #define MAKE_HRMS(name, hold_tap_flavor, ...) \
-    ZMK_BEHAVIOR(hml_ ## name, hold_tap, \
+    ZMK_HOLD_TAP(hml_ ## name, \
         flavor = hold_tap_flavor; \
         bindings = <&kp>, <&kp>; \
         hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>; \
         __VA_ARGS__ \
     ) \
-    ZMK_BEHAVIOR(hmr_ ## name, hold_tap, \
+    ZMK_HOLD_TAP(hmr_ ## name, \
         flavor = hold_tap_flavor; \
         bindings = <&kp>, <&kp>; \
         hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>; \
@@ -72,9 +83,9 @@
 };
 
 &caps_word {  // caps word config, requires PR #1742
-    no-default-keys;
+    // no-default-keys;
     continue-list = <ALPHA NUMERIC UNDERSCORE MINUS BACKSPACE DELETE>;
-    shift-list = <ALPHA>;
+    // shift-list = <ALPHA>;
 };
 
 /* Custom behaviors/combos/layers */
@@ -93,7 +104,7 @@ MAKE_HRMS(shift, "tap-preferred",
     require-prior-idle-ms = <70>;
 )
 
-ZMK_BEHAVIOR(thumb, hold_tap,
+ZMK_HOLD_TAP(thumb,
     flavor = "balanced";
     bindings = <&mo>, <&kp>;
     tapping-term-ms = <200>;
@@ -101,7 +112,7 @@ ZMK_BEHAVIOR(thumb, hold_tap,
     // no typing streak
 )
 
-ZMK_BEHAVIOR(space, hold_tap,
+ZMK_HOLD_TAP(space,
     flavor = "balanced";
     bindings = <&mo>, <&kp>;
     tapping-term-ms = <170>;
@@ -111,19 +122,19 @@ ZMK_BEHAVIOR(space, hold_tap,
 )
 
 // tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
-ZMK_BEHAVIOR(smart_shft, mod_morph,
+ZMK_MOD_MORPH(smart_shft,
     bindings = <&sk LSHFT>, <&caps_word>;
     mods = <(MOD_LSFT)>;
 )
 
 // cmd+tab swapper, requires PR #1366
-ZMK_BEHAVIOR(macswap, tri_state,
+ZMK_TRI_STATE(macswap,
     bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
     ignored-key-positions = <LM1 RM0 RM1 RM2 RM3>;
 )
 
 // alt+tab swapper, requires PR #1366
-ZMK_BEHAVIOR(winswap, tri_state,
+ZMK_TRI_STATE(winswap,
     bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
     ignored-key-positions = <LM1 RM0 RM1 RM2 RM3>;
 )
@@ -132,34 +143,24 @@ ZMK_BEHAVIOR(winswap, tri_state,
 
 // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
 // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
-ZMK_BEHAVIOR(lower, tap_dance,
+ZMK_TAP_DANCE(lower,
     bindings = <&mo 1>, <&to 1>;
     tapping-term-ms = <200>;
 )
 
-ZMK_BEHAVIOR(magic, hold_tap,
+ZMK_HOLD_TAP(magic,
     flavor = "tap-preferred";
     bindings = <&mo>, <&rgb_ug_status_macro>;
     tapping-term-ms = <200>;
 )
 
-ZMK_BEHAVIOR(rgb_ug_status_macro, macro,
+ZMK_MACRO(rgb_ug_status_macro,
     bindings = <&rgb_ug RGB_STATUS>;
 )
 
-ZMK_BEHAVIOR(bt_sel, macro_one_param,
+ZMK_MACRO_ONE_PARAM(bt_sel,
     bindings = <&out OUT_BLE>, <&macro_param_1to2>, <&bt BT_SEL MACRO_PLACEHOLDER>;
 )
-
-#define XXX  &none
-#define ___  &trans
-
-#define BASE    0
-#define LOWER   1
-#define SYMBOL  2
-#define MOUSE   3
-#define MAGIC   4
-#define TYPING  5
 
 #define TO_MAGIC  &magic MAGIC 0
 #define IN_SRC    &kp LG(LS(LC(SPACE)))
@@ -250,11 +251,11 @@ GLV80_LAYER(Mouse,
      XXX      XXX         XXX        XXX        XXX                   ,            XXX              XXX              XXX               XXX      XXX
 // ╰────────┴───────────┴──────────┴──────────┴────────────╯                     ╰────────────────┴────────────────┴─────────────────┴────────┴────────╯
                                                                       ,
-//                                    ╭────────┬────────┬────────╮         ╭──────────┬──────────┬──────────╮
-                                        XXX      XXX      XXX                XXX        XXX        XXX
-/*                                    ├────────┼────────┼────────┤ */ , /* ├──────────┼──────────┼──────────┤ */
-                                        XXX      XXX      XXX                &to BASE   &mkp MB2   &mkp MB1
-//                                    ╰────────┴────────┴────────╯         ╰──────────┴──────────┴──────────╯
+//                              ╭───────────┬────────────┬────────╮         ╭──────────┬──────────┬──────────╮
+                                  XXX         XXX          XXX                XXX        XXX        XXX
+/*                              ├───────────┼────────────┼────────┤ */ , /* ├──────────┼──────────┼──────────┤ */
+                                  &mo LOWER   &mo SYMBOL   XXX                &to BASE   &mkp MB2   &mkp MB1
+//                              ╰───────────┴────────────┴────────╯         ╰──────────┴──────────┴──────────╯
 )
 
 GLV80_LAYER(Magic,

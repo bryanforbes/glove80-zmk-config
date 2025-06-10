@@ -21,6 +21,9 @@ draw_config:
     }
 
 parse_config:
+  zmk_additional_includes:
+    - "modules/zmk/helpers/include"
+
   trans_legend:
     tap: $$mdi:transfer$$
     type: trans

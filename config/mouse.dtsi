@@ -1,17 +1,28 @@
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1250
-#define ZMK_MOUSE_DEFAULT_SCRL_VAL 100
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20
 
-#include <behaviors/mouse_keys.dtsi>
-#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/pointing.h>
+#include <input/processors.dtsi>
 
 &mmv {
   acceleration-exponent = <1>;      // 1
-  time-to-max-speed-ms = <1500>;    // 40
+  time-to-max-speed-ms = <500>;    // 300
   delay-ms = <0>;                   // 0
 };
 
+&mmv_input_listener {
+  warp {
+    layers = <SYMBOL>;
+    input-processors = <&zip_xy_scaler 3 1>;
+  };
+  precision {
+    layers = <LOWER>;
+    input-processors = <&zip_xy_scaler 1 2>;
+  };
+};
+
 &msc {
-  acceleration-exponent = <1>;      // 0
-  time-to-max-speed-ms = <5000>;    // 40
-  delay-ms = <0>;                   // 10
+  acceleration-exponent = <0>;      // 1
+  time-to-max-speed-ms = <300>;    // 300
+  delay-ms = <0>;                   // 0
 };
