@@ -6,6 +6,8 @@ on:
     paths:
       - 'config/glove80.keymap'
       - 'config/*.dtsi'
+      - 'config/west.yml'
+      - 'build.yml'
       - 'keymap-drawer/config.yaml'
       - '.github/workflows/draw-keymap.yml'
 
