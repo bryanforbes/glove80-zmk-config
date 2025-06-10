@@ -18,9 +18,11 @@ manifest:
     # ZMK modules
     - name: zmk-helpers
       remote: urob
+      revision: v0.2.1
       path: modules/zmk/helpers
     - name: zmk-tri-state
       remote: urob
+      revision: v0.2.1
       path: modules/zmk/tri-state
 
   self:
