@@ -1,4 +1,4 @@
-layout: {qmk_keyboard: glove80}
+layout: {zmk_keyboard: glove80}
 layers:
   Base:
   - $$tabler:brightness-down$$
@@ -313,8 +313,8 @@ layers:
   - ''
   - ''
   - ''
-  - ''
-  - ''
+  - Lower
+  - Symbol
   - ''
   - {t: Base, h: toggle}
   - {t: '$$mdi:numeric-2$$', h: '$$mdi:mouse$$'}
